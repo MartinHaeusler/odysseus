@@ -42,3 +42,6 @@ Basically you create a new instance of the `Odysseus` class, configure it, and r
 				e.printStackTrace();
 			}
 		}
+
+# About Modules
+An *Odysseus Module* is a combination of an Ecore metamodel and operations that allow to generate instances of this model. These operations are called *Mutators*. For every Ecore metamodel you want to generate instances for, you will need a module with the corresponding mutators. Check out the social network module if you want to create your own module; it acts as a reference implementation for modules.
