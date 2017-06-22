@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated socialnetwork -->
+      <package
+            uri="org.odysseus.socialnetwork.activity"
+            class="org.odysseus.models.socialnetwork.activity.ActivityPackage"
+            genModel="src/main/resources/socialnetwork.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated socialnetwork -->
+      <package
+            uri="org.odysseus.socialnetwork.user"
+            class="org.odysseus.models.socialnetwork.user.UserPackage"
+            genModel="src/main/resources/socialnetwork.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated socialnetwork -->
+      <package
+            uri="org.odysseus.socialnetwork.media"
+            class="org.odysseus.models.socialnetwork.media.MediaPackage"
+            genModel="src/main/resources/socialnetwork.genmodel"/>
+   </extension>
+</plugin>
