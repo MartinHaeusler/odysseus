@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/org.odysseus.modules.itlandscape/src-gen" creationIcons="false"
+    editDirectory="/org.odysseus.modules.itlandscape.edit/src-gen" editorDirectory="/org.odysseus.modules.itlandscape.editor/src-gen"
+    modelPluginID="org.odysseus.modules.itlandscape" modelName="Itlandscape" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" complianceLevel="8.0" copyrightFields="false" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>itlandscape.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Itlandscape" basePackage="org.odysseus.modules" disposableProviderFactory="true"
+      ecorePackage="itlandscape.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="itlandscape.ecore#//ServiceLevelAgreement">
+      <genEnumLiterals ecoreEnumLiteral="itlandscape.ecore#//ServiceLevelAgreement/BEST_EFFORT"/>
+      <genEnumLiterals ecoreEnumLiteral="itlandscape.ecore#//ServiceLevelAgreement/BRONZE"/>
+      <genEnumLiterals ecoreEnumLiteral="itlandscape.ecore#//ServiceLevelAgreement/SILVER"/>
+      <genEnumLiterals ecoreEnumLiteral="itlandscape.ecore#//ServiceLevelAgreement/GOLD"/>
+    </genEnums>
+    <genClasses ecoreClass="itlandscape.ecore#//Storage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Storage/capacity"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//PhysicalMachine">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//PhysicalMachine/uses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//PhysicalMachine/cpuCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//PhysicalMachine/clockRateGhz"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//PhysicalMachine/ramGB"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//Cluster">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Cluster/highAvailability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Cluster/loadBalancing"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//VirtualMachine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//VirtualMachine/cpuCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//VirtualMachine/ramGB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//VirtualMachine/clockRateGhz"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//Application">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//Application/runsOn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//Application/accesses"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//Service">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//Service/dependsOn"/>
+    </genClasses>
+    <genClasses ecoreClass="itlandscape.ecore#//Database">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//Database/runsOn"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="itlandscape.ecore#//Host">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Host/ip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Host/operatingSystem"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="itlandscape.ecore#//VirtualHost">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference itlandscape.ecore#//VirtualHost/runsOn"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="itlandscape.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Element/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Element/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute itlandscape.ecore#//Element/sla"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
