@@ -1,16 +1,24 @@
 package org.odysseus.spi.module;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.odysseus.modules.itlandscape.ItlandscapePackage;
 import org.odysseus.spi.Mutator;
 import org.odysseus.spi.OdysseusModule;
+import org.odysseus.spi.module.mutators.DeployClusterMutator;
 
 import com.google.common.collect.Lists;
 
 public class ItLandscapeModule implements OdysseusModule {
+
+	private final List<Mutator> mutators = Collections.unmodifiableList(Lists.newArrayList(
+			//
+			new DeployClusterMutator()
+	//
+	));
 
 	@Override
 	public Collection<? extends EPackage> getEPackages() {
@@ -21,8 +29,7 @@ public class ItLandscapeModule implements OdysseusModule {
 
 	@Override
 	public Collection<? extends Mutator> getMutators() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mutators;
 	}
 
 	@Override
@@ -32,7 +39,7 @@ public class ItLandscapeModule implements OdysseusModule {
 
 	@Override
 	public String getQualifiedName() {
-		return "org.odysseus.models.itlandscape";
+		return "org.odysseus.modules.itlandscape";
 	}
 
 	@Override
