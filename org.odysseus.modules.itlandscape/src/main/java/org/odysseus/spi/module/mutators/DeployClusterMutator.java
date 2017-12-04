@@ -1,5 +1,6 @@
 package org.odysseus.spi.module.mutators;
 
+import java.util.List;
 import java.util.Map;
 
 import org.odysseus.modules.itlandscape.Cluster;
@@ -11,6 +12,7 @@ import org.odysseus.spi.Mutator;
 import org.odysseus.spi.MutatorType;
 import org.odysseus.spi.exceptions.ModificationNotApplicableException;
 import org.odysseus.spi.exceptions.NotEnoughElementsException;
+import org.odysseus.spi.module.mutators.util.MutatorUtil;
 
 public class DeployClusterMutator implements Mutator {
 
@@ -44,9 +46,11 @@ public class DeployClusterMutator implements Mutator {
 		// TODO generate description
 		// generate the members of the cluster
 		int members = context.random().nextIntBetween(CLUSTER_SIZE_MIN, CLUSTER_SIZE_MAX);
+		List<String> machineNames = MutatorUtil.generatePhysicalMachineNames(context.random(), members, true, state);
+		String osName = MutatorUtil.generateOSName(context.random());
 		for (int i = 0; i < members; i++) {
 			PhysicalMachine physicalMachine = context.instantiate(ItlandscapePackage.Literals.PHYSICAL_MACHINE);
-			// TODO generate name
+			physicalMachine.setName(machineNames.get(i));
 			// TODO generate description
 			physicalMachine.setSla(context.random().pickOne(ServiceLevelAgreement.VALUES));
 			int cores = context.random().nextIntBetween(CPU_CORES_MIN, CPU_CORES_MAX);
@@ -57,7 +61,7 @@ public class DeployClusterMutator implements Mutator {
 			physicalMachine.setCpuCores(cores);
 			physicalMachine.setClockRateGhz(context.random().nextFloatBetween(CLOCK_RATE_MIN, CLOCK_RATE_MAX));
 			physicalMachine.setRamGB(this.floorToPowerOf2(context.random().nextIntBetween(RAM_MIN, RAM_MAX)));
-			// TODO set operating system (maybe the same for all cluster members?)
+			physicalMachine.setOperatingSystem(osName);
 			context.addToModel(physicalMachine);
 			cluster.getRunsOn().add(physicalMachine);
 		}
