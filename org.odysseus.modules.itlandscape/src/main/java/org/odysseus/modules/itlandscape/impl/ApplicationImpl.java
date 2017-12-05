@@ -5,6 +5,7 @@ package org.odysseus.modules.itlandscape.impl;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.odysseus.modules.itlandscape.Application;
 import org.odysseus.modules.itlandscape.Database;
 import org.odysseus.modules.itlandscape.Host;
@@ -20,6 +21,7 @@ import org.odysseus.modules.itlandscape.ItlandscapePackage;
  * <ul>
  *   <li>{@link org.odysseus.modules.itlandscape.impl.ApplicationImpl#getRunsOn <em>Runs On</em>}</li>
  *   <li>{@link org.odysseus.modules.itlandscape.impl.ApplicationImpl#getAccesses <em>Accesses</em>}</li>
+ *   <li>{@link org.odysseus.modules.itlandscape.impl.ApplicationImpl#getDependsOn <em>Depends On</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +64,16 @@ public class ApplicationImpl extends ElementImpl implements Application {
 	@SuppressWarnings("unchecked")
 	public EList<Database> getAccesses() {
 		return (EList<Database>) eGet(ItlandscapePackage.Literals.APPLICATION__ACCESSES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Application> getDependsOn() {
+		return (EList<Application>) eGet(ItlandscapePackage.Literals.APPLICATION__DEPENDS_ON, true);
 	}
 
 } //ApplicationImpl

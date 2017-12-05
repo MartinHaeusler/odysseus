@@ -5,6 +5,7 @@ package org.odysseus.modules.itlandscape.impl;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.odysseus.modules.itlandscape.Application;
 import org.odysseus.modules.itlandscape.ItlandscapePackage;
 import org.odysseus.modules.itlandscape.Service;

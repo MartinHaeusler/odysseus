@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.odysseus.modules.itlandscape.Application#getRunsOn <em>Runs On</em>}</li>
  *   <li>{@link org.odysseus.modules.itlandscape.Application#getAccesses <em>Accesses</em>}</li>
+ *   <li>{@link org.odysseus.modules.itlandscape.Application#getDependsOn <em>Depends On</em>}</li>
  * </ul>
  *
  * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getApplication()
@@ -53,5 +54,21 @@ public interface Application extends Element {
 	 * @generated
 	 */
 	EList<Database> getAccesses();
+
+	/**
+	 * Returns the value of the '<em><b>Depends On</b></em>' reference list.
+	 * The list contents are of type {@link org.odysseus.modules.itlandscape.Application}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Depends On</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Depends On</em>' reference list.
+	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getApplication_DependsOn()
+	 * @model
+	 * @generated
+	 */
+	EList<Application> getDependsOn();
 
 } // Application

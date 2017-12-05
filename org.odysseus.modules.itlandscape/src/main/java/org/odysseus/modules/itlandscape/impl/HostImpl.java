@@ -3,6 +3,7 @@
 package org.odysseus.modules.itlandscape.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.odysseus.modules.itlandscape.Host;
 import org.odysseus.modules.itlandscape.ItlandscapePackage;
 

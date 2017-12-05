@@ -705,13 +705,22 @@ public interface ItlandscapePackage extends EPackage {
 	int APPLICATION__ACCESSES = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION__DEPENDS_ON = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int APPLICATION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
@@ -1043,6 +1052,17 @@ public interface ItlandscapePackage extends EPackage {
 	EReference getApplication_Accesses();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.odysseus.modules.itlandscape.Application#getDependsOn <em>Depends On</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Depends On</em>'.
+	 * @see org.odysseus.modules.itlandscape.Application#getDependsOn()
+	 * @see #getApplication()
+	 * @generated
+	 */
+	EReference getApplication_DependsOn();
+
+	/**
 	 * Returns the meta object for class '{@link org.odysseus.modules.itlandscape.Service <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1358,6 +1378,14 @@ public interface ItlandscapePackage extends EPackage {
 		 * @generated
 		 */
 		EReference APPLICATION__ACCESSES = eINSTANCE.getApplication_Accesses();
+
+		/**
+		 * The meta object literal for the '<em><b>Depends On</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference APPLICATION__DEPENDS_ON = eINSTANCE.getApplication_DependsOn();
 
 		/**
 		 * The meta object literal for the '{@link org.odysseus.modules.itlandscape.impl.ServiceImpl <em>Service</em>}' class.

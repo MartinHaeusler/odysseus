@@ -329,6 +329,15 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getApplication_DependsOn() {
+		return (EReference) applicationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getService() {
 		return serviceEClass;
 	}
@@ -500,6 +509,7 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 		applicationEClass = createEClass(APPLICATION);
 		createEReference(applicationEClass, APPLICATION__RUNS_ON);
 		createEReference(applicationEClass, APPLICATION__ACCESSES);
+		createEReference(applicationEClass, APPLICATION__DEPENDS_ON);
 
 		serviceEClass = createEClass(SERVICE);
 		createEReference(serviceEClass, SERVICE__DEPENDS_ON);
@@ -608,6 +618,9 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 		initEReference(getApplication_Accesses(), this.getDatabase(), null, "accesses", null, 0, -1, Application.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getApplication_DependsOn(), this.getApplication(), null, "dependsOn", null, 0, -1,
+				Application.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getService_DependsOn(), this.getApplication(), null, "dependsOn", null, 0, -1, Service.class,

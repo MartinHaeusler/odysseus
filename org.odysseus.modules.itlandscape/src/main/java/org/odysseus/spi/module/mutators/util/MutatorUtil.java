@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.odysseus.spi.RandomGenerator;
 
 import com.google.common.collect.Iterables;
@@ -20,21 +21,40 @@ import com.google.common.collect.Multimaps;
 
 public class MutatorUtil {
 
+	// =================================================================================================================
+	// RESOURCE FILE PATHS
+	// =================================================================================================================
+
+	private static final String RESOURCE_FILE__OPERATING_SYSTEMS = "BaseData/operatingSystems.csv";
+	private static final String RESOURCE_FILE__PHYSICAL_MACHINE_NAMES = "BaseData/physicalMachineNames.csv";
+	private static final String RESOURCE_FILE__APPLICATION_NAMES = "BaseData/applications.csv";
+	private static final String RESOURCE_FILE__STORAGE_NAMES = "BaseData/storageSystems.csv";
+
+	// =================================================================================================================
+	// CACHES
+	// =================================================================================================================
+
 	private static final List<String> OS_NAMES;
 	private static final List<String> PHYSICAL_MACHINE_NAMES;
+	private static final List<String> APPLICATION_NAMES;
+	private static final List<String> STORAGE_NAMES;
 
 	private static final List<String> OS_FAMILIES;
 	private static final ListMultimap<String, String> OS_NAMES_BY_FAMILY;
 
+	// =================================================================================================================
+	// OTHER CONSTANTS
+	// =================================================================================================================
+
 	private static final String MUTATOR_STATE_NAME_USAGE_PREFIX = "nameUsage";
 
 	static {
-		List<String> osNames = ClassloaderUtils.resourceFileToLines("BaseData/operatingSystems.csv");
+		List<String> osNames = ClassloaderUtils.resourceFileToLines(RESOURCE_FILE__OPERATING_SYSTEMS);
 		// ignore comma
 		osNames = osNames.stream().map(name -> name.replaceAll(",", "")).collect(Collectors.toList());
 		OS_NAMES = Collections.unmodifiableList(osNames);
 
-		List<String> physicalMachineNames = ClassloaderUtils.resourceFileToLines("BaseData/physicalMachineNames.csv");
+		List<String> physicalMachineNames = ClassloaderUtils.resourceFileToLines(RESOURCE_FILE__PHYSICAL_MACHINE_NAMES);
 		// ignore comma
 		physicalMachineNames = physicalMachineNames.stream().map(name -> name.replaceAll(",", ""))
 				.collect(Collectors.toList());
@@ -61,6 +81,16 @@ public class MutatorUtil {
 		}
 		OS_FAMILIES = Collections.unmodifiableList(osFamilies);
 		OS_NAMES_BY_FAMILY = Multimaps.unmodifiableListMultimap(osNamesByFamily);
+
+		List<String> applicationNames = ClassloaderUtils.resourceFileToLines(RESOURCE_FILE__APPLICATION_NAMES);
+		// ignore comma
+		applicationNames = applicationNames.stream().map(name -> name.replaceAll(",", "")).collect(Collectors.toList());
+		APPLICATION_NAMES = Collections.unmodifiableList(applicationNames);
+
+		List<String> storageNames = ClassloaderUtils.resourceFileToLines(RESOURCE_FILE__STORAGE_NAMES);
+		// ignore comma
+		storageNames = storageNames.stream().map(name -> name.replaceAll(",", "")).collect(Collectors.toList());
+		STORAGE_NAMES = Collections.unmodifiableList(storageNames);
 	}
 
 	public static String generatePhysicalMachineName(final RandomGenerator random,
@@ -76,6 +106,17 @@ public class MutatorUtil {
 	public static List<String> generatePhysicalMachineNames(final RandomGenerator random, final int count,
 			final boolean sameType, final Map<String, Object> mutatorState) {
 		return generatePhysicalMachineNames(random, count, sameType, createUsageAppender(mutatorState));
+	}
+
+	public static String generateVirtualHostName(final String baseName, final Map<String, Object> mutatorState) {
+		Function<String, String> usageAppender = createUsageAppender(mutatorState);
+		return usageAppender.apply(baseName);
+	}
+
+	public static String generateApplicationName(final RandomGenerator random, final Map<String, Object> mutatorState) {
+		Function<String, String> usageAppender = createUsageAppender(mutatorState);
+		String baseName = random.pickOne(APPLICATION_NAMES);
+		return usageAppender.apply(baseName);
 	}
 
 	public static List<String> generatePhysicalMachineNames(final RandomGenerator random, final int count,
@@ -97,9 +138,24 @@ public class MutatorUtil {
 		return names;
 	}
 
+	public static String generateStorageName(final RandomGenerator random, final Map<String, Object> mutatorState) {
+		checkNotNull(random, "Precondition violation - argument 'random' must not be NULL!");
+		checkNotNull(mutatorState, "Precondition violation - argument 'mutatorState' must not be NULL!");
+		Function<String, String> usageAppender = createUsageAppender(mutatorState);
+		String baseName = random.pickOne(STORAGE_NAMES);
+		return usageAppender.apply(baseName);
+	}
+
 	public static String generateOSName(final RandomGenerator random) {
 		checkNotNull(random, "Precondition violation - argument 'random' must not be NULL!");
 		return Iterables.getOnlyElement(generateOSNames(random, 1, OsNames.RANDOM));
+	}
+
+	public static Pair<String, String> generateOSNameAndFamily(final RandomGenerator random) {
+		checkNotNull(random, "Precondition violation - argument 'random' must not be NULL!");
+		String osFamily = random.pickOne(OS_FAMILIES);
+		String os = random.pickOne(OS_NAMES_BY_FAMILY.get(osFamily));
+		return Pair.of(os, osFamily);
 	}
 
 	public static List<String> generateOSNames(final RandomGenerator random, final int count, final OsNames names) {
@@ -177,5 +233,16 @@ public class MutatorUtil {
 
 		RANDOM, SAME_FAMILY, SAME_OS
 
+	}
+
+	public static String generateIpAdress(final RandomGenerator random) {
+		String separator = "";
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < 4; i++) {
+			builder.append(separator);
+			separator = ".";
+			builder.append(random.nextIntBetween(1, 254));
+		}
+		return builder.toString();
 	}
 }

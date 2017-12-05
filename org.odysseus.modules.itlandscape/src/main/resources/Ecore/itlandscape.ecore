@@ -30,6 +30,8 @@
         eType="#//Host"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accesses" upperBound="-1"
         eType="#//Database"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" upperBound="-1"
+        eType="#//Application"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" upperBound="-1"

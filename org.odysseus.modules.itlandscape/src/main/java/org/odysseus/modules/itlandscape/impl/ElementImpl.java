@@ -3,6 +3,7 @@
 package org.odysseus.modules.itlandscape.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.odysseus.modules.itlandscape.Element;
