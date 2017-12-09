@@ -3,37 +3,45 @@ package org.odysseus.spi.module.mutators;
 import java.util.List;
 import java.util.Map;
 
+import org.odysseus.modules.itlandscape.Application;
 import org.odysseus.modules.itlandscape.ItlandscapePackage;
-import org.odysseus.modules.itlandscape.PhysicalMachine;
-import org.odysseus.modules.itlandscape.Storage;
 import org.odysseus.spi.ModelGenerationContext;
 import org.odysseus.spi.Mutator;
 import org.odysseus.spi.MutatorType;
 import org.odysseus.spi.exceptions.ModificationNotApplicableException;
 import org.odysseus.spi.exceptions.NotEnoughElementsException;
-import org.odysseus.spi.module.mutators.util.PhysicalMachines;
 
-public class AcquirePhysicalMachine implements Mutator {
-
-	private static final int CONNECTED_STORAGES_MIN = 1;
-	private static final int CONNECTED_STORAGES_MAX = 10;
+public class AddApplicationDependencyMutator implements Mutator {
 
 	@Override
 	public void apply(final ModelGenerationContext context, final Map<String, Object> state)
 			throws ModificationNotApplicableException, NotEnoughElementsException {
-		int storageCount = context.random().nextIntBetween(CONNECTED_STORAGES_MIN, CONNECTED_STORAGES_MAX);
-		List<Storage> storages = context.getAnyDistinctInstancesOf(ItlandscapePackage.Literals.STORAGE, storageCount);
-		if (storages == null || storages.size() < storageCount) {
+		List<Application> apps = context.getAnyDistinctInstancesOf(ItlandscapePackage.Literals.APPLICATION, 10);
+		// find two applications which do not have a dependency to each other
+		Application depSource = null;
+		Application depTarget = null;
+		for (Application app1 : apps) {
+			for (Application app2 : apps) {
+				if (app1.equals(app2)) {
+					// an application can't have dependency to itself
+					continue;
+				}
+				if (app1.getDependsOn().contains(app2) == false) {
+					depSource = app1;
+					depTarget = app2;
+					break;
+				}
+			}
+		}
+		if (depSource == null || depTarget == null) {
 			throw new NotEnoughElementsException();
 		}
-		PhysicalMachine physicalMachine = PhysicalMachines.create(context, state);
-		physicalMachine.getUses().addAll(storages);
-		context.addToModel(physicalMachine);
+		depSource.getDependsOn().add(depTarget);
 	}
 
 	@Override
 	public double getBaseLikelyhood() {
-		return 25;
+		return 30;
 	}
 
 	@Override
@@ -43,7 +51,7 @@ public class AcquirePhysicalMachine implements Mutator {
 
 	@Override
 	public String getName() {
-		return "Acquire Physical Machine";
+		return "Add Application Dependency";
 	}
 
 }
