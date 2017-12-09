@@ -24,15 +24,12 @@ public class DeployApplicationMutator implements Mutator {
 	private static final int MAX_HOSTS = 5;
 	private static final int MIN_DATABASES = 0;
 	private static final int MAX_DATABASES = 3;
-	private static final int MIN_DEPENDENCIES = 0;
-	private static final int MAX_DEPENDENCIES = 5;
 
 	@Override
 	public void apply(final ModelGenerationContext context, final Map<String, Object> state)
 			throws ModificationNotApplicableException, NotEnoughElementsException {
 		EClass hostClass = ItlandscapePackage.Literals.HOST;
 		EClass databaseClass = ItlandscapePackage.Literals.DATABASE;
-		EClass applicationClass = ItlandscapePackage.Literals.APPLICATION;
 		int hostCount = context.random().nextIntBetween(MIN_HOSTS, MAX_HOSTS);
 		List<Host> hosts = context.getAnyDistinctInstancesOf(hostClass, hostCount, true);
 		if (hosts == null || hosts.size() < hostCount) {
@@ -48,23 +45,12 @@ public class DeployApplicationMutator implements Mutator {
 		if (databases == null || databases.size() < databaseCount) {
 			throw new NotEnoughElementsException();
 		}
-		int dependenciesCount = context.random().nextIntBetween(MIN_DEPENDENCIES, MAX_DEPENDENCIES);
-		List<Application> dependencies;
-		if (dependenciesCount <= 0) {
-			dependencies = Lists.newArrayList();
-		} else {
-			dependencies = context.getAnyDistinctInstancesOf(applicationClass, dependenciesCount, true);
-		}
-		if (dependencies == null || dependencies.size() < dependenciesCount) {
-			throw new NotEnoughElementsException();
-		}
 		// generate the application
 		Application application = context.instantiateAndAddToModel(hostClass);
 		application.setName(MutatorUtil.generateApplicationName(context.random(), state));
 		application.setSla(context.random().pickOne(ServiceLevelAgreement.VALUES));
 		application.getRunsOn().addAll(hosts);
 		application.getAccesses().addAll(databases);
-		application.getDependsOn().addAll(dependencies);
 	}
 
 	@Override

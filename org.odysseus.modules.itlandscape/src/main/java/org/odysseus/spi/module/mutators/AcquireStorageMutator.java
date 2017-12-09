@@ -12,7 +12,7 @@ import org.odysseus.spi.exceptions.ModificationNotApplicableException;
 import org.odysseus.spi.exceptions.NotEnoughElementsException;
 import org.odysseus.spi.module.mutators.util.MutatorUtil;
 
-public class AcquireStorage implements Mutator {
+public class AcquireStorageMutator implements Mutator {
 
 	private final int STORAGE_CAPACITY_MIN = 128;
 	private final int STORAGE_CAPACITY_MAX = 8192;

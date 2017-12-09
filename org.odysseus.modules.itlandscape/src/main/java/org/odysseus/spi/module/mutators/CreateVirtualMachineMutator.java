@@ -18,7 +18,7 @@ import org.odysseus.spi.exceptions.ModificationNotApplicableException;
 import org.odysseus.spi.exceptions.NotEnoughElementsException;
 import org.odysseus.spi.module.mutators.util.MutatorUtil;
 
-public class CreateVirtualMachine implements Mutator {
+public class CreateVirtualMachineMutator implements Mutator {
 
 	// =================================================================================================================
 	// SETTINGS

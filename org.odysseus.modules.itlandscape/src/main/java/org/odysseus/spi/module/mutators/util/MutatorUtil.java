@@ -29,6 +29,7 @@ public class MutatorUtil {
 	private static final String RESOURCE_FILE__PHYSICAL_MACHINE_NAMES = "BaseData/physicalMachineNames.csv";
 	private static final String RESOURCE_FILE__APPLICATION_NAMES = "BaseData/applications.csv";
 	private static final String RESOURCE_FILE__STORAGE_NAMES = "BaseData/storageSystems.csv";
+	private static final String RESOURCE_FILE__DATABASE_NAMES = "BaseData/databaseNames.csv";
 
 	// =================================================================================================================
 	// CACHES
@@ -38,6 +39,7 @@ public class MutatorUtil {
 	private static final List<String> PHYSICAL_MACHINE_NAMES;
 	private static final List<String> APPLICATION_NAMES;
 	private static final List<String> STORAGE_NAMES;
+	private static final List<String> DATABASE_NAMES;
 
 	private static final List<String> OS_FAMILIES;
 	private static final ListMultimap<String, String> OS_NAMES_BY_FAMILY;
@@ -91,6 +93,11 @@ public class MutatorUtil {
 		// ignore comma
 		storageNames = storageNames.stream().map(name -> name.replaceAll(",", "")).collect(Collectors.toList());
 		STORAGE_NAMES = Collections.unmodifiableList(storageNames);
+
+		List<String> databaseNames = ClassloaderUtils.resourceFileToLines(RESOURCE_FILE__DATABASE_NAMES);
+		// ignore comma
+		databaseNames = databaseNames.stream().map(name -> name.replaceAll(",", "")).collect(Collectors.toList());
+		DATABASE_NAMES = Collections.unmodifiableList(databaseNames);
 	}
 
 	public static String generatePhysicalMachineName(final RandomGenerator random,
@@ -143,6 +150,21 @@ public class MutatorUtil {
 		checkNotNull(mutatorState, "Precondition violation - argument 'mutatorState' must not be NULL!");
 		Function<String, String> usageAppender = createUsageAppender(mutatorState);
 		String baseName = random.pickOne(STORAGE_NAMES);
+		return usageAppender.apply(baseName);
+	}
+
+	public static String generateServiceName(final Map<String, Object> mutatorState) {
+		checkNotNull(mutatorState, "Precondition violation - argument 'mutatorState' must not be NULL!");
+		Function<String, String> usageAppender = createUsageAppender(mutatorState);
+		String baseName = "IT Service"; // TODO maybe we can come up with a better name here?
+		return usageAppender.apply(baseName);
+	}
+
+	public static String generateDatabaseName(final RandomGenerator random, final Map<String, Object> mutatorState) {
+		checkNotNull(random, "Precondition violation - argument 'random' must not be NULL!");
+		checkNotNull(mutatorState, "Precondition violation - argument 'mutatorState' must not be NULL!");
+		String baseName = random.pickOne(DATABASE_NAMES);
+		Function<String, String> usageAppender = createUsageAppender(mutatorState);
 		return usageAppender.apply(baseName);
 	}
 
@@ -245,4 +267,5 @@ public class MutatorUtil {
 		}
 		return builder.toString();
 	}
+
 }
