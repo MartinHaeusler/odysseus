@@ -33,6 +33,7 @@ dependencies {
 	
 	// TEST MODULES
 	testCompile files('testmodules/org.odysseus.modules.socialnetwork.jar')
+	testCompile files('testmodules/org.odysseus.modules.itlandscape.jar')
 	
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 }

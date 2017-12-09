@@ -69,7 +69,10 @@ public class MutatorUtil {
 				if (os1.equals(os2)) {
 					continue;
 				}
-				String family = getCommonOSFamily(os1, os2);
+				String family = getCommonOSFamily(os1, os2).trim();
+				if (family.isEmpty()) {
+					continue;
+				}
 				if (osNamesByFamily.containsEntry(family, os1) == false) {
 					osNamesByFamily.put(family, os1);
 				}
@@ -200,13 +203,16 @@ public class MutatorUtil {
 	}
 
 	public static String getCommonOSFamily(final String os1, final String os2) {
-		String regex = "(.*)[0-9]+(\\.[0-9]+)?";
+		String regex = "(.*)\\s+[0-9]+(\\.[0-9]*)?";
 		Pattern osNamePattern = Pattern.compile(regex);
 		if (os1.equals(os2)) {
 			return os1;
 		}
 		String commonSubstring = longestCommonSubstring(os1, os2).trim();
 		if (commonSubstring.isEmpty()) {
+			return "";
+		}
+		if (os1.startsWith(commonSubstring) == false || os2.startsWith(commonSubstring) == false) {
 			return "";
 		}
 		Matcher matcher = osNamePattern.matcher(commonSubstring);
@@ -222,7 +228,7 @@ public class MutatorUtil {
 		return (name) -> {
 			String key = MUTATOR_STATE_NAME_USAGE_PREFIX + "." + name;
 			Integer usage = (Integer) mutatorState.get(key);
-			int count = usage == null ? 0 : usage;
+			int count = usage == null ? 1 : usage;
 			String newName = name + " " + count;
 			count++;
 			mutatorState.put(key, count);

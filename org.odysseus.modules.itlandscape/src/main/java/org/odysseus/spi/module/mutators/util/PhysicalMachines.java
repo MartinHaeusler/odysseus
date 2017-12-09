@@ -13,7 +13,7 @@ public class PhysicalMachines {
 	private static final int CPU_CORES_MAX = 8;
 	private static final float CLOCK_RATE_MIN = 1.0f;
 	private static final float CLOCK_RATE_MAX = 3.8f;
-	private static final int RAM_MIN = 2;
+	private static final int RAM_MIN = 8;
 	private static final int RAM_MAX = 128;
 
 	public static PhysicalMachine create(final ModelGenerationContext context, final Map<String, Object> state) {

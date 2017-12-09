@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.odysseus.modules.itlandscape.Cluster;
 import org.odysseus.modules.itlandscape.ItlandscapePackage;
 import org.odysseus.modules.itlandscape.PhysicalMachine;
@@ -38,13 +39,14 @@ public class DeployClusterMutator implements Mutator {
 		Pair<String, String> osNameAndFamily = MutatorUtil.generateOSNameAndFamily(context.random());
 		String osName = osNameAndFamily.getLeft();
 		String osFamily = osNameAndFamily.getRight();
-		String clusterName = MutatorUtil.generateVirtualHostName(osFamily, state);
+		String clusterName = MutatorUtil.generateVirtualHostName(osFamily + " Cluster", state);
 		cluster.setName(clusterName);
 		// generate the members of the cluster
 		int members = context.random().nextIntBetween(CLUSTER_SIZE_MIN, CLUSTER_SIZE_MAX);
 		List<String> machineNames = MutatorUtil.generatePhysicalMachineNames(context.random(), members, true, state);
+		PhysicalMachine prototype = PhysicalMachines.create(context, state);
 		for (int i = 0; i < members; i++) {
-			PhysicalMachine physicalMachine = PhysicalMachines.create(context, state);
+			PhysicalMachine physicalMachine = EcoreUtil.copy(prototype);
 			physicalMachine.setName(machineNames.get(i));
 			physicalMachine.setOperatingSystem(osName);
 			context.addToModel(physicalMachine);

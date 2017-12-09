@@ -46,7 +46,7 @@ public class DeployApplicationMutator implements Mutator {
 			throw new NotEnoughElementsException();
 		}
 		// generate the application
-		Application application = context.instantiateAndAddToModel(hostClass);
+		Application application = context.instantiateAndAddToModel(ItlandscapePackage.Literals.APPLICATION);
 		application.setName(MutatorUtil.generateApplicationName(context.random(), state));
 		application.setSla(context.random().pickOne(ServiceLevelAgreement.VALUES));
 		application.getRunsOn().addAll(hosts);
