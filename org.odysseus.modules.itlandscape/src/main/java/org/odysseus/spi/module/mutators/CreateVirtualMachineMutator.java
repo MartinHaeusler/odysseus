@@ -94,8 +94,16 @@ public class CreateVirtualMachineMutator implements Mutator {
 		}
 		VirtualMachine clientVM = this.createVirtualMachine(context, state);
 		clientVM.getRunsOn().add(hostVM);
-		clientVM.setCpuCores(context.random().nextIntBetween(1, hostVM.getCpuCores()));
-		clientVM.setRamGB(context.random().nextIntBetween(1, hostVM.getRamGB()));
+		int cores = 1;
+		if (hostVM.getCpuCores() > 1) {
+			cores = context.random().nextIntBetween(1, hostVM.getCpuCores());
+		}
+		clientVM.setCpuCores(cores);
+		int ram = 1;
+		if (hostVM.getRamGB() > 1) {
+			ram = context.random().nextIntBetween(1, hostVM.getRamGB());
+		}
+		clientVM.setRamGB(ram);
 		return clientVM;
 	}
 
@@ -107,8 +115,16 @@ public class CreateVirtualMachineMutator implements Mutator {
 		}
 		VirtualMachine clientVM = this.createVirtualMachine(context, state);
 		clientVM.getRunsOn().add(hostMachine);
-		clientVM.setCpuCores(context.random().nextIntBetween(1, hostMachine.getCpuCores()));
-		clientVM.setRamGB(context.random().nextIntBetween(1, hostMachine.getRamGB()));
+		int cores = 1;
+		if (hostMachine.getCpuCores() > 1) {
+			cores = context.random().nextIntBetween(1, hostMachine.getCpuCores());
+		}
+		int ram = 1;
+		if (hostMachine.getRamGB() > 1) {
+			ram = context.random().nextIntBetween(1, hostMachine.getRamGB());
+		}
+		clientVM.setCpuCores(cores);
+		clientVM.setRamGB(ram);
 		return clientVM;
 	}
 

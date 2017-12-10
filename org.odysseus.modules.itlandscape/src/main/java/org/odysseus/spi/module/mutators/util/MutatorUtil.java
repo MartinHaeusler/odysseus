@@ -144,8 +144,7 @@ public class MutatorUtil {
 		} else {
 			names = random.pick(PHYSICAL_MACHINE_NAMES, count, false);
 		}
-		names.stream().map(nameTransformation).collect(Collectors.toList());
-		return names;
+		return names.stream().map(nameTransformation).collect(Collectors.toList());
 	}
 
 	public static String generateStorageName(final RandomGenerator random, final Map<String, Object> mutatorState) {
