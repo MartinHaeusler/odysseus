@@ -32,7 +32,7 @@ public interface Database extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Runs On</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getDatabase_RunsOn()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Host> getRunsOn();

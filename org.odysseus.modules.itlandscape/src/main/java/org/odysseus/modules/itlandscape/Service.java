@@ -32,7 +32,7 @@ public interface Service extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depends On</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getService_DependsOn()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Application> getDependsOn();

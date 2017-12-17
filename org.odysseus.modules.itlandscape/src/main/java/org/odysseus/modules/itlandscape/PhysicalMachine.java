@@ -35,7 +35,7 @@ public interface PhysicalMachine extends Host {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Uses</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getPhysicalMachine_Uses()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Storage> getUses();

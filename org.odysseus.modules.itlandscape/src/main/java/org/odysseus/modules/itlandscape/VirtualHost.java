@@ -32,7 +32,7 @@ public interface VirtualHost extends Host {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Runs On</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getVirtualHost_RunsOn()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Host> getRunsOn();

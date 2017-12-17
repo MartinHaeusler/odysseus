@@ -34,7 +34,7 @@ public interface Application extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Runs On</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getApplication_RunsOn()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Host> getRunsOn();
@@ -50,7 +50,7 @@ public interface Application extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Accesses</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getApplication_Accesses()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Database> getAccesses();
@@ -66,7 +66,7 @@ public interface Application extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depends On</em>' reference list.
 	 * @see org.odysseus.modules.itlandscape.ItlandscapePackage#getApplication_DependsOn()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Application> getDependsOn();

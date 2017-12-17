@@ -5,7 +5,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PhysicalMachine" eSuperTypes="#//Host">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="uses" upperBound="-1" eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="uses" ordered="false" upperBound="-1"
+        eType="#//Storage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockRateGhz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
@@ -26,28 +27,28 @@
         defaultValueLiteral="0.0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Application" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" upperBound="-1"
-        eType="#//Host"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="accesses" upperBound="-1"
-        eType="#//Database"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" upperBound="-1"
-        eType="#//Application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accesses" ordered="false"
+        upperBound="-1" eType="#//Database"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" ordered="false"
+        upperBound="-1" eType="#//Application"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" upperBound="-1"
-        eType="#//Application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" ordered="false"
+        upperBound="-1" eType="#//Application"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" upperBound="-1"
-        eType="#//Host"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Host" abstract="true" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatingSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VirtualHost" abstract="true" eSuperTypes="#//Host">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" upperBound="-1"
-        eType="#//Host"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

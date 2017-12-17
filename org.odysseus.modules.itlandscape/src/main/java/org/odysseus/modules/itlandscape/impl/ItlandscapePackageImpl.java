@@ -581,7 +581,7 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPhysicalMachine_Uses(), this.getStorage(), null, "uses", null, 0, -1, PhysicalMachine.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPhysicalMachine_CpuCores(), ecorePackage.getEInt(), "cpuCores", "1", 0, 1,
 				PhysicalMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -614,24 +614,24 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getApplication_RunsOn(), this.getHost(), null, "runsOn", null, 0, -1, Application.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getApplication_Accesses(), this.getDatabase(), null, "accesses", null, 0, -1, Application.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getApplication_DependsOn(), this.getApplication(), null, "dependsOn", null, 0, -1,
 				Application.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getService_DependsOn(), this.getApplication(), null, "dependsOn", null, 0, -1, Service.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(databaseEClass, Database.class, "Database", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDatabase_RunsOn(), this.getHost(), null, "runsOn", null, 0, -1, Database.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				!IS_ORDERED);
 
 		initEClass(hostEClass, Host.class, "Host", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getHost_Ip(), ecorePackage.getEString(), "ip", null, 0, 1, Host.class, !IS_TRANSIENT,
@@ -643,7 +643,7 @@ public class ItlandscapePackageImpl extends EPackageImpl implements ItlandscapeP
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVirtualHost_RunsOn(), this.getHost(), null, "runsOn", null, 0, -1, VirtualHost.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, Element.class, !IS_TRANSIENT,
